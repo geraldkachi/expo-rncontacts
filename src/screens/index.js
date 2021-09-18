@@ -1,4 +1,4 @@
-export {default} from "./Contacts"
+export { default } from "./Contacts"
 export * from "./ContactDetail"
 export * from "./CreateContact"
 export * from "./Login"

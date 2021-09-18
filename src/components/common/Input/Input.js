@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { StyleSheet, TextInput, View, Text } from 'react-native'
-import { color } from 'react-native-reanimated'
 import colors from '../../../assets/theme/colors'
 
 const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, ...props }) => {
@@ -20,11 +19,11 @@ const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, .
     }
 
     const getBorderColor = () => {
-        if (focused) {
-            return colors.primary
-        }
         if (error) {
             return colors.danger
+        }
+        if (focused) {
+            return colors.primary
         } else {
             return colors.grey
         }
@@ -32,7 +31,7 @@ const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, .
     return (
         <View style={styles.inputContainer}>
             {label && <Text>{label}</Text>}
-            <View style={[styles.inputwrapper,{alignItems: icon ? "center": 'baseline'}, { flexDirection: getFlexDirection(), borderColor: getBorderColor() }]}>
+            <View style={[styles.inputwrapper, { alignItems: icon ? "center" : 'baseline' }, { flexDirection: getFlexDirection(), borderColor: getBorderColor() }]}>
                 <TextInput
                     style={[styles.textInput, style]}
                     onChangeText={onChangeText}
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     textInput: {
         flex: 1,
         // backgroundColor: colors.success,
-        width:'100%'
+        width: '100%'
     },
     error: {
         color: colors.danger,
