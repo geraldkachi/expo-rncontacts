@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../assets/theme/colors'
-import Container from '../../components/common/Container/Container'
-import Input from '../../components/common/Input/Input'
+import Container from '../../components/common/Container'
+import Input from '../../components/common'
 import ReuseableButton from '../../components/common/ReuseableButton/ReuseableButton'
 import { REGISTER } from '../../constants'
+import Message from '../../components/common/Message'
 
  const LoginComponent = () => {
     const [value, onChangeText] = useState('')
@@ -19,6 +20,11 @@ import { REGISTER } from '../../constants'
             <View>
                 <Text style={styles.welcome}>Welcome to RNContacts</Text>
                 <Text style={styles.title}>Please Login Here</Text>
+
+                <Message retry retryFn={() => console.log("222", hey)} onDismiss={()=>true} primary message="invalid Crediential" />
+                <Message info message="invalid Crediential" />
+                <Message danger message="invalid Crediential" />
+                <Message success message="invalid Crediential" />
                 <View style={StyleSheet.loginform}>
 
                     <Input label="Username"

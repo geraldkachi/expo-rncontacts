@@ -22,3 +22,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+// yarn start --reset-cache
+// expo r -c 

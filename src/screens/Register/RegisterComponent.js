@@ -1,21 +1,29 @@
+import React, { useEffect, useState } from 'react'
 import { useNavigation } from '@react-navigation/core'
-import React, { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../assets/theme/colors'
-import Container from '../../components/common/Container/Container'
-import Input from '../../components/common/Input'
+import Container from '../../components/common/Container'
+import Input from '../../components/common'
 import ReuseableButton from '../../components/common/ReuseableButton/ReuseableButton'
 import envs from "../../config"
+import axiosInstance from "../../helpers"
+import { LOGIN } from "../../constants"
 
-// DEV_BACKEND_URL
-console.log("BACKEND_URl", envs)
-console.log("__DEV__", __DEV__)
+// DEV_BACKEND_URL 
+// console.log("BACKEND_URl", envs)
+// console.log("__DEV__", __DEV__)
 
 
-const RegisterComponent = ({ form, errors, onChange, onSubmit}) => {
+const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) => {
     // const [value, onChangeText] = useState('')
     const { navigate } = useNavigation()
+
+    useEffect(() => {
+        // axiosInstance.get(`api/contacts`)
+        // .then(res => console.log(res))
+        // .catct(err => console.log('err', err))
+    }, [])
 
     return (
         <Container>
@@ -32,28 +40,29 @@ const RegisterComponent = ({ form, errors, onChange, onSubmit}) => {
                         onChangeText={(value) => {
                             onChange({name: "userName", value})
                         }}                        
-                        error={"This field is required"}
+                        // error={"This field is required"}
+                        error={errors.userName || error?.username?.[0]}
                     />
                     <Input label="First Name"
                         placeholder="Enter Firstname"
                         onChangeText={(value) => {
                             onChange({name: "firstName", value})
                         }}                        
-                        error={errors.firstName}
+                        error={errors.firstName || error?.first_name?.[0]}
                     />
                     <Input label="Last Name"
                         placeholder="Enter Lastname"
                         onChangeText={(value) => {
                             onChange({name: "lastName", value})
                         }}        
-                        error={errors.lastName}                
+                        error={errors.lastName || error?.last_name?.[0]}               
                     />
                     <Input label="Email"
                         placeholder="Enter Email"
-                        error={errors.firstName}
                         onChangeText={(value) => {
                             onChange({name: "email", value})
                         }}                        
+                        error={errors.email || error?.email?.[0]}
                     />
 
                     <Input label="Password"
@@ -64,13 +73,13 @@ const RegisterComponent = ({ form, errors, onChange, onSubmit}) => {
                         onChangeText={(value) => {
                             onChange({name: "password", value})
                         }}                        
-                        error={errors.password}  
+                        error={errors.password || error?.password?.[0]} 
                     />
                     <ReuseableButton onPress={onSubmit} title="Submit" primary />
 
                     <View style={styles.register}>
-                        <Text style={styles.infoText}>Need a new account?</Text>
-                        <TouchableOpacity onPress={()=> navigate(REGISTER)}>
+                        <Text style={styles.infoText}>Already have an account?</Text>
+                        <TouchableOpacity onPress={()=> navigate(LOGIN)}>
                             <Text style={styles.linkBtn}>Register</Text>
                         </TouchableOpacity>
                     </View>
@@ -115,3 +124,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
     }
 })
+
+// expo start --clear
+// yarn start --reset-cache

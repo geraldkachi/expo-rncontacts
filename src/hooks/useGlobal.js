@@ -1,8 +1,8 @@
 import { useContext } from "react"
-import { GlobalContect } from "../context/Provider"
+import { GlobalContext } from "../context/Provider"
 
 const useGlobal = () => {
-    return useContext(GlobalContect)
+    return useContext(GlobalContext)
 }
 
 export default useGlobal

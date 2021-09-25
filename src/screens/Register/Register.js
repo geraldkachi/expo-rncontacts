@@ -1,9 +1,37 @@
-import React, { useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
+import {useFocusEffect} from '@react-navigation/native';
 import RegisterComponent from './RegisterComponent'
+import register, { clearAuthState } from '../../context/actions/auth/register'
+import useGlobal from '../../hooks/useGlobal'
+import { LOGIN } from '../../constants'
 
-const Register = () => {
+const Register = ({ navigation }) => {
+
+    console.log()
+
+    const {
+        authDispatch, authState: { error, loading, data }
+    } = useGlobal()
+
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
+
+    useEffect(() => {
+        if (data) navigation.navigate(LOGIN)
+    }, [data])
+
+    useFocusEffect(
+        useCallback(() => {
+            return () => {
+                if (data || error) {
+                    clearAuthState()(authDispatch);
+                }
+            };
+        }, [data, error]),
+    );
+
+    console.log(form)
+    console.log(authDispatch, "authDispatch")
 
     const onChange = ({ name, value }) => {
         setForm({ ...form, [name]: value })
@@ -58,14 +86,27 @@ const Register = () => {
             setErrors(prev => {
                 return { ...prev, password: "Please add a password" }
             })
+
+            if (
+                Object.values(form).length === 5 &&
+                Object.values(form).every(item => item.trim().length > 0) &&
+                Object.values(errors).every(item => !item)
+            ) {
+                register(form)
+                console.log("11111", 11111)
+            }
         }
     }
-    return (<RegisterComponent
-        {...{ form }}
-        {...{ errors }}
-        onChange={onChange}
-        onSubmit={onSubmit}
-    />)
+    return (
+        <RegisterComponent
+            {...{ form }}
+            {...{ loading }}
+            {...{ errors }}
+            {...{ error }}
+            {...{ onChange }}
+            {...{ onSubmit }}
+        />
+    )
 }
 
 export default Register

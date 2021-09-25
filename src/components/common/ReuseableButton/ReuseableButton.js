@@ -23,7 +23,10 @@ const ReuseableButton = ({title, loading, disabled, primary, danger, secondary, 
         <TouchableOpacity disabled={disabled} onPress={onPress} style={[styles.buttonContainer, {backgroundColor: getBgColor()}]}>
             <View style={styles.loadingIndicator}>
             {loading && <ActivityIndicator color={ primary ? colors.secondary : colors.primary } />}
-            {title && <Text style={[styles.title, {color: disabled ? colors.black : colors.white, paddingLeft: loading ? 5 : 0}]}>{title}</Text>}
+            {title && 
+                <Text style={[styles.title, {color: disabled ? colors.black : colors.white, paddingLeft: loading ? 5 : 0}]}>
+                    {loading ? 'Please wait...' : title}
+                </Text>}
             </View>
         </TouchableOpacity>
     )
