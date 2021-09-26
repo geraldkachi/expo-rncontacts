@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../../../assets/theme/colors';
 
 const Message = ({ message, primary, info, danger, success, retry, retryFn, onDismiss }) => {
+
+    const [userDismissed, setUserDismissed] = useState(false)
 
     const getBgColor = () => {
     if (primary) {
@@ -21,6 +23,8 @@ const Message = ({ message, primary, info, danger, success, retry, retryFn, onDi
     };
 
     return (
+        <>
+        {userDismissed ? null : 
         <TouchableOpacity style={[styles.buttonContainer, { backgroundColor: getBgColor() }]}>
             <View style={styles.loadingIndicator}>
                 <Text style={{color: colors.white}}>{message}</Text>
@@ -32,12 +36,16 @@ const Message = ({ message, primary, info, danger, success, retry, retryFn, onDi
                 )}
 
                 {typeof onDismiss === "function" && (
-                <TouchableOpacity onPress={()=>true}>
+                <TouchableOpacity onPress={()=>{
+                    setUserDismissed(true)
+                    onDismiss()
+                }}>
                     <Text style={{color: colors.white}}>X</Text>
                 </TouchableOpacity>
                 )}
             </View>
-        </TouchableOpacity>
+        </TouchableOpacity>}
+        </>
     )
 }
 
@@ -51,7 +59,7 @@ const styles = StyleSheet.create({
         height: 42,
         borderRadius:4,
         marginVertical: 5,
-        paddingHorizontal: 5
+        paddingHorizontal: 10
     },
     title: {},
     loadingIndicator:{
@@ -60,3 +68,6 @@ const styles = StyleSheet.create({
 
     },
 })
+
+
+// {retry && typeof onDismiss !== "function" && (

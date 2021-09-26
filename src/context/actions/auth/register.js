@@ -18,7 +18,7 @@ const register = ({
     dispatch({
         type: REGISTER_LOADING
     })
-    axiosInstance.post('api/auth/register', {
+    axiosInstance.post('auth/register', {
         username,
         first_name,
         last_name,

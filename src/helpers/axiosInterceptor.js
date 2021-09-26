@@ -3,11 +3,11 @@ import axios from "axios"
 import env from "../config"
 
 let headers = {
-    Accept: 'application/json,text/plain,*/*',
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Headers': '*',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Credentials': true,
+    // Accept: 'application/json,text/plain,*/*',
+    // 'Content-Type': 'application/json',
+    // 'Access-Control-Allow-Headers': '*',
+    // 'Access-Control-Allow-Origin': '*',
+    // 'Access-Control-Allow-Credentials': true,
 };
 
 const axiosInstance = axios.create({

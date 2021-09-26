@@ -9,15 +9,12 @@ import ReuseableButton from '../../components/common/ReuseableButton/ReuseableBu
 import envs from "../../config"
 import axiosInstance from "../../helpers"
 import { LOGIN } from "../../constants"
-
-// DEV_BACKEND_URL 
-// console.log("BACKEND_URl", envs)
-// console.log("__DEV__", __DEV__)
+import Message from '../../components/common/Message'
 
 
 const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) => {
-    // const [value, onChangeText] = useState('')
     const { navigate } = useNavigation()
+    const [isSecureEntry, setIsSecureEntry] = useState(true);
 
     useEffect(() => {
         // axiosInstance.get(`api/contacts`)
@@ -32,50 +29,65 @@ const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) 
             <View>
                 <Text style={styles.welcome}>Welcome to RNContacts</Text>
                 <Text style={styles.title}> Create a free Account</Text>
-                <View style={StyleSheet.loginform}>
+                <View style={styles.loginform}>
+                    
+                    {error?.error && <Message retry retryFn={() => console.log("Opps Something went wrong, try again", "Opps Something went wrong, try again")} onDismiss={()=>{}} danger message={error?.error} />}
 
                     <Input label="Username"
                         placeholder="Enter Username"
                         // onChangeText={(text) => onChangeText(text)}
                         onChangeText={(value) => {
                             onChange({name: "userName", value})
-                        }}                        
-                        // error={"This field is required"}
+                        }}
+                        value={form.userName || null} 
                         error={errors.userName || error?.username?.[0]}
                     />
                     <Input label="First Name"
                         placeholder="Enter Firstname"
                         onChangeText={(value) => {
                             onChange({name: "firstName", value})
-                        }}                        
+                        }}        
+                        value={form.firstName || null}                
                         error={errors.firstName || error?.first_name?.[0]}
                     />
                     <Input label="Last Name"
                         placeholder="Enter Lastname"
                         onChangeText={(value) => {
                             onChange({name: "lastName", value})
-                        }}        
+                        }}   
+                        value={form.lastName || null}      
                         error={errors.lastName || error?.last_name?.[0]}               
                     />
                     <Input label="Email"
                         placeholder="Enter Email"
                         onChangeText={(value) => {
                             onChange({name: "email", value})
-                        }}                        
+                        }}
+                        value={form.email || null} 
                         error={errors.email || error?.email?.[0]}
                     />
 
                     <Input label="Password"
                         placeholder="Enter Password"
-                        secureTextEntry={true}
-                        icon={<Text>HIDE</Text>}
+                        // secureTextEntry={true}
+                        secureTextEntry={isSecureEntry}
+                        // icon={<Text>HIDE</Text>}
+                        icon={
+                            <TouchableOpacity
+                              onPress={() => {
+                                setIsSecureEntry((prev) => !prev);
+                              }}>
+                              <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+                            </TouchableOpacity>
+                          }
                         iconPosition="right"
                         onChangeText={(value) => {
                             onChange({name: "password", value})
-                        }}                        
+                        }}              
+                        value={form.password || null}           
                         error={errors.password || error?.password?.[0]} 
                     />
-                    <ReuseableButton onPress={onSubmit} title="Submit" primary />
+                    <ReuseableButton disabled={loading} loading={loading} onPress={onSubmit} title="Submit" primary />
 
                     <View style={styles.register}>
                         <Text style={styles.infoText}>Already have an account?</Text>

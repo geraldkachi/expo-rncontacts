@@ -9,10 +9,8 @@ import ReuseableButton from '../../components/common/ReuseableButton/ReuseableBu
 import { REGISTER } from '../../constants'
 import Message from '../../components/common/Message'
 
- const LoginComponent = () => {
-    const [value, onChangeText] = useState('')
-    const { navigate } = useNavigation()
-
+ const LoginComponent = ({ form, error, onSubmit, onChange, navigation, loading, justSignedUp}) => {
+    const [isSecureEntry, setIsSecureEntry] = useState(true);
     return (
         <Container>
             <Image style={styles.logoImage} height={70} width={70} source={require('../../assets/images/logo.png')} />
@@ -21,32 +19,43 @@ import Message from '../../components/common/Message'
                 <Text style={styles.welcome}>Welcome to RNContacts</Text>
                 <Text style={styles.title}>Please Login Here</Text>
 
-                <Message retry retryFn={() => console.log("222", hey)} onDismiss={()=>true} primary message="invalid Crediential" />
-                <Message info message="invalid Crediential" />
-                <Message danger message="invalid Crediential" />
-                <Message success message="invalid Crediential" />
-                <View style={StyleSheet.loginform}>
+                <View style={styles.loginform}>
+                    {justSignedUp && (<Message onDismiss={() => {}} success message="Account created successfully" />)}
+                    {error && !error.error && ( <Message onDismiss={() => {}} danger message="invalid credentials" />)}
+                    {error?.error && <Message danger onDismiss message={error?.error} />}
 
                     <Input label="Username"
                         placeholder="Enter Username"
-                        onChangeText={(text) => onChangeText(text)}
-                        value={value}
-                    // error={"This field is required"}
+                        // onChangeText={(text) => onChangeText(text)}
+                        onChangeText={(value) => {
+                            onChange({name: "userName", value})
+                        }}
+                        value={form.userName || null}
+                        // error={error?.username?.[0]}
                     />
 
                     <Input label="Password"
                         placeholder="Enter Password"
-                        onChangeText={(text) => onChangeText(text)}
-                        value={value}
+                        onChangeText={(value) => {
+                            onChange({name: "password", value})
+                        }}                        
                         secureTextEntry={true}
-                        icon={<Text>HIDE</Text>}
+                        icon={
+                            <TouchableOpacity
+                              onPress={() => {
+                                setIsSecureEntry((prev) => !prev);
+                              }}>
+                              <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
+                            </TouchableOpacity>
+                          }
                         iconPosition="right"
+                        value={form.password || null}
                     />
-                    <ReuseableButton title="Submit" primary />
+                    <ReuseableButton disabled={loading} loading={loading} onPress={onSubmit} title="Submit" primary />
 
-                    <View style={styles.register}>
-                        <Text style={styles.infoText}>Need a new account?</Text>
-                        <TouchableOpacity onPress={()=> navigate(REGISTER)}>
+                    <View style={styles.register}> 
+                    <Text style={styles.infoText}>Need a new account?</Text>
+                        <TouchableOpacity onPress={()=> navigation.navigate(REGISTER)}>
                             <Text style={styles.linkBtn}>Register</Text>
                         </TouchableOpacity>
                     </View>

@@ -7,8 +7,6 @@ import { LOGIN } from '../../constants'
 
 const Register = ({ navigation }) => {
 
-    console.log()
-
     const {
         authDispatch, authState: { error, loading, data }
     } = useGlobal()
@@ -16,13 +14,16 @@ const Register = ({ navigation }) => {
     const [form, setForm] = useState({})
     const [errors, setErrors] = useState({})
 
-    useEffect(() => {
-        if (data) navigation.navigate(LOGIN)
-    }, [data])
+    // useEffect(() => {
+    //     if (data) [
+    //         navigation.navigate(LOGIN)
+    //     ]
+    // }, [data])
 
     useFocusEffect(
         useCallback(() => {
-            return () => {
+            // console.log("when the page mounts")
+            return () => { // cleanup up function when you leave the page
                 if (data || error) {
                     clearAuthState()(authDispatch);
                 }
@@ -30,8 +31,6 @@ const Register = ({ navigation }) => {
         }, [data, error]),
     );
 
-    console.log(form)
-    console.log(authDispatch, "authDispatch")
 
     const onChange = ({ name, value }) => {
         setForm({ ...form, [name]: value })
@@ -92,8 +91,9 @@ const Register = ({ navigation }) => {
                 Object.values(form).every(item => item.trim().length > 0) &&
                 Object.values(errors).every(item => !item)
             ) {
-                register(form)
-                console.log("11111", 11111)
+                register(form)(authDispatch)((response) => {
+                    navigate(LOGIN, {data: response});
+                });
             }
         }
     }
