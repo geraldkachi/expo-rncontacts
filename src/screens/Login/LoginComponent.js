@@ -1,4 +1,4 @@
-import { useNavigation } from '@react-navigation/core'
+// import { useNavigation } from '@react-navigation/core'
 import React, { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
@@ -39,7 +39,8 @@ import Message from '../../components/common/Message'
                         onChangeText={(value) => {
                             onChange({name: "password", value})
                         }}                        
-                        secureTextEntry={true}
+                        secureTextEntry={isSecureEntry}
+                        onSubmitEditing={()=> onSubmit()}
                         icon={
                             <TouchableOpacity
                               onPress={() => {

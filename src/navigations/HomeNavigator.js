@@ -1,10 +1,10 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import { CONTACT_DETAIL, CONTACT_LIST, CREATE_CONTACT, SETTINGS } from '../constants'
-import Contacts from "../screens"
-import ContactDetail from "../screens"
-import CreateContact from "../screens"
-import Settings from "../screens"
+import Contacts from "../screens/Contacts"
+import ContactDetail from "../screens/ContactDetail"
+import CreateContact from "../screens/CreateContact/"
+import Settings from "../screens/Settings"
 
 const HomeNavigator = () => {
     const HomeStack = createStackNavigator()

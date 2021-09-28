@@ -2,6 +2,8 @@ import React from 'react'
 import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Container } from '../../components/common'
 import Icon from '../../components/common/Icon/Icon';
+import { SETTINGS } from '../../constants';
+import logoutUser from '../../context/actions/auth/logoutUser';
 
 const SideMenu = ({ navigation, authDispatch }) => {
 
@@ -11,8 +13,7 @@ const SideMenu = ({ navigation, authDispatch }) => {
           {
             text: 'Cancel',
             onPress: () => {},
-          },
-    
+          },    
           {
             text: 'OK',
             onPress: () => {

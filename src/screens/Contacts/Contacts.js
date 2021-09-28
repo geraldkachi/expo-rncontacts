@@ -21,7 +21,7 @@ const Contacts = () => {
     }, [])
     return (
         <Container style={styles.container}>
-           Contacts
+           
            <TouchableOpacity onPress={()=> toggleDrawer()}>
                <Text>Hlepr</Text>
            </TouchableOpacity>

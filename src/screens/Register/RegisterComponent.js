@@ -84,7 +84,8 @@ const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) 
                         onChangeText={(value) => {
                             onChange({name: "password", value})
                         }}              
-                        value={form.password || null}           
+                        onSubmitEditing={()=> onSubmit()}
+                        value={form.password || null}        
                         error={errors.password || error?.password?.[0]} 
                     />
                     <ReuseableButton disabled={loading} loading={loading} onPress={onSubmit} title="Submit" primary />

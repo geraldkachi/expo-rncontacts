@@ -1,4 +1,4 @@
-import { CLEAR_AUTH_STATE, LOGIN_FAIL, LOGIN_LOADING, LOGIN_SUCCESS, REGISTER_FAIL, REGISTER_LOADING, REGISTER_SUCCESS } from "../actionTypes/actionTypes";
+import { CLEAR_AUTH_STATE, LOGIN_FAIL, LOGIN_LOADING, LOGIN_SUCCESS, LOGOUT_USER, REGISTER_FAIL, REGISTER_LOADING, REGISTER_SUCCESS } from "../actionTypes/actionTypes";
 
 // const auth = (state, action) => {}
 const auth = (state, { type, payload }) => {
@@ -22,6 +22,13 @@ const auth = (state, { type, payload }) => {
                 loading: false,
                 data: payload,
                 isLoggedIn: true
+            };
+        case LOGOUT_USER:
+            return {
+                ...state,
+                loading: false,
+                data: null,
+                isLoggedIn: false
             };
         case REGISTER_FAIL:
         case LOGIN_FAIL:
