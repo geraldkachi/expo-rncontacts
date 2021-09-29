@@ -30,7 +30,7 @@ import Message from '../../components/common/Message'
                         onChangeText={(value) => {
                             onChange({name: "userName", value})
                         }}
-                        value={form.userName || null}
+                        value={form.userName}
                         // error={error?.username?.[0]}
                     />
 
@@ -50,7 +50,7 @@ import Message from '../../components/common/Message'
                             </TouchableOpacity>
                           }
                         iconPosition="right"
-                        value={form.password || null}
+                        value={form.password}
                     />
                     <ReuseableButton disabled={loading} loading={loading} onPress={onSubmit} title="Submit" primary />
 

@@ -58,3 +58,4 @@ const Icon = ({type, ...props}) => {
 };
 
 export default Icon;
+  

@@ -36,34 +36,26 @@ const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) 
                     <Input label="Username"
                         placeholder="Enter Username"
                         // onChangeText={(text) => onChangeText(text)}
-                        onChangeText={(value) => {
-                            onChange({name: "userName", value})
-                        }}
-                        value={form.userName || null} 
+                        onChangeText={value => onChange({name: "userName", value})}
+                        value={form.userName} 
                         error={errors.userName || error?.username?.[0]}
                     />
                     <Input label="First Name"
                         placeholder="Enter Firstname"
-                        onChangeText={(value) => {
-                            onChange({name: "firstName", value})
-                        }}        
-                        value={form.firstName || null}                
+                        onChangeText={value => onChange({name: "firstName", value})}        
+                        value={form.firstName}                
                         error={errors.firstName || error?.first_name?.[0]}
                     />
                     <Input label="Last Name"
                         placeholder="Enter Lastname"
-                        onChangeText={(value) => {
-                            onChange({name: "lastName", value})
-                        }}   
-                        value={form.lastName || null}      
+                        onChangeText={value => onChange({name: "lastName", value})}   
+                        value={form.lastName}      
                         error={errors.lastName || error?.last_name?.[0]}               
                     />
                     <Input label="Email"
                         placeholder="Enter Email"
-                        onChangeText={(value) => {
-                            onChange({name: "email", value})
-                        }}
-                        value={form.email || null} 
+                        onChangeText={value => onChange({name: "email", value})}
+                        value={form.email} 
                         error={errors.email || error?.email?.[0]}
                     />
 
@@ -74,18 +66,14 @@ const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) 
                         // icon={<Text>HIDE</Text>}
                         icon={
                             <TouchableOpacity
-                              onPress={() => {
-                                setIsSecureEntry((prev) => !prev);
-                              }}>
+                              onPress={() => setIsSecureEntry((prev) => !prev)}>
                               <Text>{isSecureEntry ? 'Show' : 'Hide'}</Text>
                             </TouchableOpacity>
                           }
                         iconPosition="right"
-                        onChangeText={(value) => {
-                            onChange({name: "password", value})
-                        }}              
+                        onChangeText={value => onChange({name: "password", value})}              
                         onSubmitEditing={()=> onSubmit()}
-                        value={form.password || null}        
+                        value={form.password}        
                         error={errors.password || error?.password?.[0]} 
                     />
                     <ReuseableButton disabled={loading} loading={loading} onPress={onSubmit} title="Submit" primary />

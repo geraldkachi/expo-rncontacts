@@ -9,7 +9,7 @@ import Settings from "../screens/Settings"
 const HomeNavigator = () => {
     const HomeStack = createStackNavigator()
     return (
-        <HomeStack.Navigator initialParams={CONTACT_LIST} headerMode={false}> 
+        <HomeStack.Navigator initialParams={CONTACT_LIST}> 
             <HomeStack.Screen name={CONTACT_LIST} component={Contacts} />
             <HomeStack.Screen name={CONTACT_DETAIL} component={ContactDetail} />
             <HomeStack.Screen name={CREATE_CONTACT} component={CreateContact} />

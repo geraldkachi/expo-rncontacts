@@ -3,28 +3,26 @@ import React, { useEffect } from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Container } from '../../components/common'
+import Icon from '../../components/common/Icon/Icon'
 
 const Contacts = () => {
     const {setOptions, toggleDrawer} = useNavigation()
 
     useEffect(() => {
         setOptions({
-            headerLeft: () => {
-                <TouchableOpacity onPress={()=> toggleDrawer()} >
-                        <Text>Touch</Text>
+            headerTitle:'Contact',
+            headerLeft: () => (
+                <TouchableOpacity onPress={()=> toggleDrawer()}>
+                        <Icon type="material" style={{padding: 10}} size={25} name="menu" />
                 </TouchableOpacity>
-            }
+            )
         })
-        return () => {
-            
-        }
+        return () => {}
     }, [])
+    
     return (
-        <Container style={styles.container}>
-           
-           <TouchableOpacity onPress={()=> toggleDrawer()}>
-               <Text>Hlepr</Text>
-           </TouchableOpacity>
+        <Container style={styles.container}>       
+           <Text>Hi Contact</Text>
         </Container>
     )
 }
