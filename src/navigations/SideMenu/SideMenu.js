@@ -1,7 +1,6 @@
 import React from 'react'
 import { Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Container } from '../../components/common'
-import Icon from '../../components/common/Icon/Icon';
+import { Container, Icon } from '../../components/common'
 import { SETTINGS } from '../../constants';
 import logoutUser from '../../context/actions/auth/logoutUser';
 

@@ -1,9 +1,9 @@
-import { useNavigation } from '@react-navigation/core'
 import React, { useEffect } from 'react'
-import { ScrollView, StyleSheet, Text, View } from 'react-native'
+import { useNavigation } from '@react-navigation/core'
+import { StyleSheet, Text } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
-import { Container } from '../../components/common'
-import Icon from '../../components/common/Icon/Icon'
+import { Container, Icon } from '../../components/common'
+
 
 const Contacts = () => {
     const {setOptions, toggleDrawer} = useNavigation()
@@ -21,7 +21,7 @@ const Contacts = () => {
     }, [])
     
     return (
-        <Container style={styles.container}>       
+        <Container style={styles.container}>
            <Text>Hi Contact</Text>
         </Container>
     )

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, TextInput, View, Text } from 'react-native'
 import colors from '../../../assets/theme/colors'
 
-const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, ...props }) => {
+export const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, ...props }) => {
 
     const [focused, setFocused] = useState(false)
 
@@ -49,7 +49,7 @@ const Input = ({ value, onChangeText, label, style, icon, iconPosition, error, .
     )
 }
 
-export default Input
+// export default Input
 
 const styles = StyleSheet.create({
     inputContainer: { paddingVertical: 12 },

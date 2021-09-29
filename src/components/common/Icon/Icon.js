@@ -51,11 +51,10 @@ const getIconFont = (type) => {
   }
 };
 
-const Icon = ({type, ...props}) => {
+export const Icon = ({type, ...props}) => {
   const FontICon = getIconFont(type);
 
   return <FontICon {...props} />;
 };
 
-export default Icon;
-  
+// export default Icon;

@@ -3,11 +3,8 @@ import React, { useState } from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../assets/theme/colors'
-import Container from '../../components/common/Container'
-import Input from '../../components/common'
-import ReuseableButton from '../../components/common/ReuseableButton/ReuseableButton'
+import {ReuseableButton, Message, Input, Container} from '../../components/common'
 import { REGISTER } from '../../constants'
-import Message from '../../components/common/Message'
 
  const LoginComponent = ({ form, error, onSubmit, onChange, navigation, loading, justSignedUp}) => {
     const [isSecureEntry, setIsSecureEntry] = useState(true);

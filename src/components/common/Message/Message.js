@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../../../assets/theme/colors';
 
-const Message = ({ message, primary, info, danger, success, retry, retryFn, onDismiss }) => {
+export const Message = ({ message, primary, info, danger, success, retry, retryFn, onDismiss }) => {
 
     const [userDismissed, setUserDismissed] = useState(false)
 
@@ -49,7 +49,7 @@ const Message = ({ message, primary, info, danger, success, retry, retryFn, onDi
     )
 }
 
-export default Message
+// export default Message
 
 const styles = StyleSheet.create({
     buttonContainer: {

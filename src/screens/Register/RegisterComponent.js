@@ -3,13 +3,8 @@ import { useNavigation } from '@react-navigation/core'
 import { Image, StyleSheet, Text, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import colors from '../../assets/theme/colors'
-import Container from '../../components/common/Container'
-import Input from '../../components/common'
-import ReuseableButton from '../../components/common/ReuseableButton/ReuseableButton'
-import envs from "../../config"
-import axiosInstance from "../../helpers"
+import {Container, Input, ReuseableButton, Message} from '../../components/common'
 import { LOGIN } from "../../constants"
-import Message from '../../components/common/Message'
 
 
 const RegisterComponent = ({ form, errors, error, loading, onChange, onSubmit}) => {

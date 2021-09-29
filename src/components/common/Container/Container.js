@@ -1,10 +1,10 @@
 import React from 'react'
 import { ScrollView, View } from 'react-native'
-import { styles } from './style'
+import { StyleSheet } from 'react-native'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 
-const Container = ({ children }) => {
+export const Container = ({ children }) => {
     return (
         <ScrollView>
             <KeyboardAwareScrollView scrollEnabled={false}>
@@ -16,4 +16,10 @@ const Container = ({ children }) => {
     )
 }
 
-export default Container
+const styles = StyleSheet.create({
+    wrapper:{
+        padding: 20
+    }
+ })
+
+// export default Container

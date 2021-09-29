@@ -1,9 +1,8 @@
 import React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { color } from 'react-native-reanimated'
 import colors from '../../../assets/theme/colors'
 
-const ReuseableButton = ({title, loading, disabled, primary, danger, secondary, onPress }) => {
+export const ReuseableButton = ({title, loading, disabled, primary, danger, secondary, onPress }) => {
 
     const getBgColor = () => {
         if (disabled) {
@@ -32,7 +31,7 @@ const ReuseableButton = ({title, loading, disabled, primary, danger, secondary, 
     )
 }
 
-export default ReuseableButton
+// export default ReuseableButton
 
 const styles = StyleSheet.create({
     buttonContainer: {
