@@ -38,13 +38,14 @@ const AppNavContainer = () => {
     }, []);
 
     return (
-        <> {authLoaded ?
-            <NavigationContainer>
-                <StatusBar barStyle="dark-content" />
-                {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
-            </NavigationContainer>
-            : <ActivityIndicator />
-        }
+        <> 
+            {authLoaded ?
+                <NavigationContainer>
+                    <StatusBar barStyle="dark-content" />
+                    {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
+                </NavigationContainer>
+                : <ActivityIndicator />
+            }
         </>
     )
 }
