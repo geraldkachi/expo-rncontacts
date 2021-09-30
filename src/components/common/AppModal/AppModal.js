@@ -1,15 +1,14 @@
 import React from 'react'
 import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Icon, ReuseableButton } from '..'
+import { Icon, ReuseableButton } from '../'
 import colors from '../../../assets/theme/colors'
 
 export const AppModal = ({ modalVisible, setModalVisible, title, modalBody,modalFooter, closeOnTouchOutside }) => {
     return (
         <Modal visible={modalVisible} transparent style={{ justifyContent: 'center', alignItems: "center" }}>
-            <Text>AppModal</Text>
-            <Text style={{ color: colors.white }}>AppModal</Text>
 
-            <TouchableOpacity style={styles.modalWrapper} omPress={() => setModalVisible(true)}>
+
+            <View style={styles.modalWrapper} >
                 <View style={styles.modalView}>
                     <ScrollView scrollEnabled={false}>
                         <View style={styles.modalHeaer}>
@@ -33,7 +32,7 @@ export const AppModal = ({ modalVisible, setModalVisible, title, modalBody,modal
                                 <>
                                     <View style={styles.footerSeparator} />
                                     <View style={styles.footerItems}>
-                                        <View style={styles.footer}>
+                                        <View style={styles.modalFooter}>
                                             <Text style={styles.footerText}>Privacy Policy</Text>
                                             <View style={styles.termsView} />
                                             <Text style={styles.footerText}>Terms of Service</Text>
@@ -45,7 +44,7 @@ export const AppModal = ({ modalVisible, setModalVisible, title, modalBody,modal
                         <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} />
                     </ScrollView>
                 </View>
-            </TouchableOpacity>
+            </View>
         </Modal>
     )
 }
@@ -71,37 +70,31 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 21,
     },
-
     modalBody: {
         minHeight: 300,
         paddingHorizontal: 20,
         paddingVertical: 10,
     },
-
     modalFooter: {
+        flexDirection: 'row',
         justifyContent: 'space-evenly',
         paddingVertical: 7,
         alignItems: 'center',
-        flexDirection: 'row',
     },
-
     termsView: {
         width: 5,
         height: 5,
         borderRadius: 100,
         backgroundColor: colors.grey,
     },
-
     footerSeparator: {
         height: 0.5,
         backgroundColor: colors.grey,
     },
-
     footerItems: {
         width: '100%',
         padding: 10,
     },
-
     footerText: {
         fontSize: 12,
     },
