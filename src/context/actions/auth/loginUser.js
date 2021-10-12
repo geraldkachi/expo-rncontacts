@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import axiosInstance from "../../../helpers/axiosInterceptor"
+import axios from "../../../helpers/axiosInstance"
 import {  LOGIN_FAIL, LOGIN_LOADING, LOGIN_SUCCESS } from "../../actionTypes/actionTypes"
 
 
@@ -8,7 +8,7 @@ const loginUser = ({ userName: username, password }) => dispatch => {
     dispatch({
         type: LOGIN_LOADING
     })
-    axiosInstance.post('auth/login', {
+    axios.post('auth/login', {
         username,
         password
     })
@@ -23,8 +23,8 @@ const loginUser = ({ userName: username, password }) => dispatch => {
     .catch(err => {
         dispatch({
             type: LOGIN_FAIL,
-            payload: err.response 
-            ? err.response.data 
+            payload: err.response
+            ? err.response.data
             : {error: "Opps Something went wrong, try again"}
         })
     })

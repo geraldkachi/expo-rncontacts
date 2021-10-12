@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
     headers,
 })
 
-console.log('env.BACKEND_URL', env.BACKEND_URL)
+// console.log('env.BACKEND_URL', env.BACKEND_URL)
 
 axiosInstance.interceptors.request.use(async (config) => {
     const token = await AsyncStorage.getItem('token')

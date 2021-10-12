@@ -1,50 +1,61 @@
 import React from 'react'
 import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import { Icon, ReuseableButton } from '../'
+import { Icon } from '../Icon'
+import { ReuseableButton } from '../ReuseableButton'
 import colors from '../../../assets/theme/colors'
+import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
 
-export const AppModal = ({ modalVisible, setModalVisible, title, modalBody,modalFooter, closeOnTouchOutside }) => {
+export const AppModal = ({
+    modalVisible,
+    setModalVisible,
+    title,
+    modalBody,
+    modalFooter,
+    closeOnTouchOutside }) => {
     return (
         <Modal visible={modalVisible} transparent style={{ justifyContent: 'center', alignItems: "center" }}>
+            <TouchableWithoutFeedback onPress={() => closeOnTouchOutside && setModalVisible(false)}>
 
+                <View style={styles.modalWrapper}>
+                    <View style={styles.modalView}>
+                        <ScrollView scrollEnabled={false}>
+                            <View style={styles.modalHeaer}>
+                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                    <Text style={{ flex: 1 }}>{title || 'RNContacts'}</Text>
+                                    <Icon type="evil" name="close" size={27} onPress={() => setModalVisible(prev => !prev)} />
+                                </View>
 
-            <View style={styles.modalWrapper} >
-                <View style={styles.modalView}>
-                    <ScrollView scrollEnabled={false}>
-                        <View style={styles.modalHeaer}>
-                            <Text>{title || 'RNContacts'}</Text>
-                            <Icon type="evil" name="close" size={27} />
-
-                            <View />
-                            <View />
-                            <View />
-                            <View />
-                            <View />
-                            <View />
-                        </View>
-                        <View style={styles.footerSeparator} />
-
-                        <View style={styles.modalBody}>{modalFooter}</View>
-                        {modalFooter}
-
-                        {!modalFooter && (
-                            <View>
-                                <>
-                                    <View style={styles.footerSeparator} />
-                                    <View style={styles.footerItems}>
-                                        <View style={styles.modalFooter}>
-                                            <Text style={styles.footerText}>Privacy Policy</Text>
-                                            <View style={styles.termsView} />
-                                            <Text style={styles.footerText}>Terms of Service</Text>
-                                        </View>
-                                    </View>
-                                </>
+                                <View />
+                                <View />
+                                <View />
+                                <View />
+                                <View />
+                                <View />
                             </View>
-                        )}
-                        <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} />
-                    </ScrollView>
+                            <View style={styles.footerSeparator} />
+
+                            <View style={styles.modalBody}>{modalBody}</View>
+                            {modalFooter}
+
+                            {!modalFooter && (
+                                <View>
+                                    <>
+                                        <View style={styles.footerSeparator} />
+                                        <View style={styles.footerItems}>
+                                            <View style={styles.modalFooter}>
+                                                <Text style={styles.footerText}>Privacy Policy</Text>
+                                                <View style={styles.termsView} />
+                                                <Text style={styles.footerText}>Terms of Service</Text>
+                                            </View>
+                                        </View>
+                                    </>
+                                </View>
+                            )}
+                            <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} />
+                        </ScrollView>
+                    </View>
                 </View>
-            </View>
+            </TouchableWithoutFeedback>
         </Modal>
     )
 }

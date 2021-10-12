@@ -29,6 +29,7 @@ const Login = ({navigation}) => {
         if (form.userName && form.password) {
             setJustSignedUp(false);
             loginUser(form)(authDispatch)
+            setForm('')
         }
     }
 
