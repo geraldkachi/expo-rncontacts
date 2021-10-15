@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import createContacts from '../../context/actions/contacts/createContacts'
+import { StyleSheet } from 'react-native'
+import createContact from '../../context/actions/contacts/createContact'
 import CreateContactComponent from './CreateContactComponent'
 import useGlobal from "../../hooks"
+import { useNavigation } from '@react-navigation/core'
+import { CONTACT_LIST } from '../../constants'
 
 const CreateContact = () => {
-    const { contactsDispatch } = useGlobal()
+    const { navigate } = useNavigation()
+    const { contactsDispatch, contactsState: {
+        createContact: { data, loading, error } }
+    } = useGlobal()
     const [form, setForm] = useState({})
 
     const onChangeText = ({ name, value }) => {
@@ -13,16 +18,23 @@ const CreateContact = () => {
     }
 
     const onSubmit = () => {
-        createContacts(form)(contactsDispatch)
-        // console.log("submit contavts", form)
-        // setForm('')
+        createContact(form)(contactsDispatch)(() => {
+            navigate(CONTACT_LIST)
+        })
+    }
+
+    const toggleValueChange = () => {
+        setForm({ ...form, "isFavorite": form.isFavorite })
     }
     return (
         <CreateContactComponent
             {...{ form }}
             {...{ setForm }}
+            {...{ loading }}
             {...{ onChangeText }}
             {...{ onSubmit }}
+            {...{ error }}
+            {...{ toggleValueChange }}
         />
     )
 }
