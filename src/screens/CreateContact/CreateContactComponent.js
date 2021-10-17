@@ -5,8 +5,9 @@ import { Container, Input, ReuseableButton } from '../../components/common'
 import CountryPicker from "react-native-country-picker-modal"
 import { DEFAULT_IMAGE_URI } from '../../constants'
 import colors from '../../assets/theme/colors'
+import { BottonSheetImagePicker } from '../../components/common'
 
-const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading, error, toggleValueChange, openSheet }) => {
+const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading, error, toggleValueChange, openSheet, closeSheet, sheetRef, onFileSelected, localFile }) => {
     console.log(error, "error: >>>")
     console.log(loading, "loading: >>>")
 
@@ -57,12 +58,11 @@ const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading
                     />
                 </View>
 
-                <ReuseableButton title="Submit" primary
-                    loading={loading}
-                    disabled={loading}
-                    onPress={onSubmit} />
+                <ReuseableButton title="Submit" primary loading={loading} disabled={loading} onPress={onSubmit} />
 
             </Container>
+
+            <BottonSheetImagePicker {...{ onFileSelected }} ref={sheetRef} />
         </View>
     )
 }

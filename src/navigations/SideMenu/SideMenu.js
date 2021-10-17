@@ -26,7 +26,7 @@ const SideMenu = ({ navigation, authDispatch }) => {
         {
           icon: <Icon type="fontisto" size={17} name="player-settings" />,
           name: 'Settings',
-          onPress: () => navigation.navigate(SETTINGS)          
+          onPress: () => navigation.navigate(SETTINGS)    
         },
         {
           icon: <Icon type="material" size={17} name="logout" />,
