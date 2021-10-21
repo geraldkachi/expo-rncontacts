@@ -1,9 +1,10 @@
 import React from 'react'
 import { Modal, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import { Icon } from '../Icon'
-import { ReuseableButton } from '../ReuseableButton'
 import colors from '../../../assets/theme/colors'
 import { TouchableWithoutFeedback } from 'react-native-gesture-handler'
+import PropTypes from 'prop-types';
+
 
 export const AppModal = ({
     modalVisible,
@@ -13,16 +14,17 @@ export const AppModal = ({
     modalFooter,
     closeOnTouchOutside }) => {
     return (
-        <Modal visible={modalVisible} transparent style={{ justifyContent: 'center', alignItems: "center" }}>
-            <TouchableWithoutFeedback onPress={() => closeOnTouchOutside && setModalVisible(false)}>
+        <Modal visible={modalVisible} transparent>
+            <TouchableWithoutFeedback style={styles.modalWrapper} onPress={() => closeOnTouchOutside && setModalVisible(false)}>
 
-                <View style={styles.modalWrapper}>
                     <View style={styles.modalView}>
                         <ScrollView scrollEnabled={false}>
-                            <View style={styles.modalHeaer}>
+                            <View >
                                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                                     <Text style={{ flex: 1 }}>{title || 'RNContacts'}</Text>
-                                    <Icon type="evil" name="close" size={27} onPress={() => setModalVisible(prev => !prev)} />
+                                    <View onPress={()=>setModalVisible(false)}>
+                                        <Icon type="evil" name="close" size={27} onPress={() => setModalVisible(prev => !prev)} />
+                                    </View>
                                 </View>
 
                                 <View />
@@ -51,22 +53,31 @@ export const AppModal = ({
                                     </>
                                 </View>
                             )}
-                            <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} />
+                            {/* <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} /> */}
                         </ScrollView>
                     </View>
-                </View>
+                
             </TouchableWithoutFeedback>
         </Modal>
     )
 }
+
+AppModal.propTypes = {
+  closeOnTouchOutside: PropTypes.bool,
+};
+
+AppModal.defaultProps = {
+  closeOnTouchOutside: true,
+};
 
 // export default AppModal
 
 const styles = StyleSheet.create({
     modalWrapper: {
         backgroundColor: 'rgba(0,0,0,0.6)',
-        flex: 1,
-        justifyContent: 'center'
+        // flex: 1,
+        justifyContent: 'center',
+        height:'100%'
     },
     modalView: {
         backgroundColor: colors.white,
@@ -110,3 +121,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 })
+
+
+// hegworld3
+// 

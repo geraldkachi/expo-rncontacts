@@ -7,17 +7,19 @@ import { DEFAULT_IMAGE_URI } from '../../constants'
 import colors from '../../assets/theme/colors'
 import { BottonSheetImagePicker } from '../../components/common'
 
-const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading, error, toggleValueChange, openSheet, closeSheet, sheetRef, onFileSelected, localFile }) => {
+const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading, error, toggleValueChange, openSheet, closeSheet, sheetRef, onFileSelected, localFile, setModalVisible, modalVisible }) => {
     console.log(error, "error: >>>")
     console.log(loading, "loading: >>>")
 
     // const [isEnabled, setIsEnabled] = useState(false);
     // const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
+    console.log(localFile?.path)
+
     return (
         <View style={styles.container}>
             <Container>
-                <Image width={50} height={50} source={{ uri: DEFAULT_IMAGE_URI }} style={styles.imageView} />
+                <Image width={50} height={50} source={{ uri: localFile?.path || localFile || DEFAULT_IMAGE_URI }} style={styles.imageView} />
                 <TouchableOpacity onPress={openSheet}>
                     <Text style={styles.chooseText}>Choose Image</Text>
                 </TouchableOpacity>
@@ -61,8 +63,10 @@ const CreateContactComponent = ({ onChangeText, form, setForm, onSubmit, loading
                 <ReuseableButton title="Submit" primary loading={loading} disabled={loading} onPress={onSubmit} />
 
             </Container>
+            {}
 
             <BottonSheetImagePicker {...{ onFileSelected }} ref={sheetRef} />
+            <ReuseableButton title="Open Modal" secondary onPress={() => setModalVisible(true)} />
         </View>
     )
 }

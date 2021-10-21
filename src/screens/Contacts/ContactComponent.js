@@ -84,6 +84,7 @@ const ContactComponent = ({ sortBy, modalVisible, setModalVisible, loading, data
 
     return (
         <>
+        {/* {<AppModal {...{modalVisible}} {...{setModalVisible}} />} */}
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {loading &&
                     <View style={{ paddingVertical: 100, paddingHorizontal: 100 }}>

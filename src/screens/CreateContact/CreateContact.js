@@ -17,6 +17,7 @@ const CreateContact = () => {
 
     const [form, setForm] = useState({})
     const [localFile, setLocalFile] = useState(null);
+    const [modalVisible, setModalVisible] = useState(false);
 
 
     const onChangeText = ({ name, value }) => {
@@ -64,6 +65,8 @@ const CreateContact = () => {
             {...{ localFile }}
             {...{ onFileSelected }}
             {...{ toggleValueChange }}
+            {...{ setModalVisible }}
+            {...{ modalVisible }}
         />
     )
 }

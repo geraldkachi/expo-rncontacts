@@ -12,15 +12,13 @@ export const BottonSheetImagePicker = React.forwardRef(({ onFileSelected }, ref)
             name: "Take from camera",
             icon: <Icon name="camera" color={colors.grey} size={21} />,
             onPress: () => {
-                ImageCropPicker.openCamera({
+                ImageCropPicker?.openCamera({
                     width: 300, 
                     height: 300,
                     cropping: true,
                     freeStyleCropEnabled: true,
                 })
-                .then((image) => {
-                    onFileSelected(image)
-                })
+                .then((image) => {onFileSelected(image)})
                 .catch(err => console.log(err))
             }
         },
@@ -28,7 +26,7 @@ export const BottonSheetImagePicker = React.forwardRef(({ onFileSelected }, ref)
           name: 'Choose from Gallery',
           icon: <Icon name="image" color={colors.grey} size={21} />,
           onPress: () => {
-            ImageCropPicker.openPicker({
+            ImageCropPicker?.openPicker({
               width: 300,
               height: 300,
               cropping: true,
