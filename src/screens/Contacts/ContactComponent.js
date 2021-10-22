@@ -12,6 +12,7 @@ const ContactComponent = ({ sortBy, modalVisible, setModalVisible, loading, data
 
     const { navigate } = useNavigation();
     const swipeableItemRefs = useRef([]);
+
     // console.log('swipeableItemRefs', swipeableItemRefs);
 
     const toggleSwipeable = (key) => {
@@ -82,9 +83,32 @@ const ContactComponent = ({ sortBy, modalVisible, setModalVisible, loading, data
         );
     }
 
+    const dataSortBy = () => (
+        sortBy ? data.sort((a, b) => {
+
+            // const sortByFirst = sortBy === 'First Name' ? -1 : 1
+            // const sortByLast =  sortBy === 'Last Name' ? -1 : 1
+            if (sortBy === 'First Name') {
+                if (b.first_name > a.first_name) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+            if (sortBy === 'Last Name') {
+                if (b.last_name > a.last_name) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            }
+        })
+            : data
+    )
+
     return (
         <>
-        {/* {<AppModal {...{modalVisible}} {...{setModalVisible}} />} */}
+        {<AppModal {...{modalVisible}} {...{setModalVisible}} />}
             <View style={{ flex: 1, backgroundColor: colors.white }}>
                 {loading &&
                     <View style={{ paddingVertical: 100, paddingHorizontal: 100 }}>
@@ -95,23 +119,7 @@ const ContactComponent = ({ sortBy, modalVisible, setModalVisible, loading, data
                 {!loading && (
                     <View style={{ paddingVertical: 20 }}>
                         <FlatList
-                            data={sortBy ? data.sort((a, b) => {
-                                if (sortBy === 'First Name') {
-                                    if (b.first_name > a.first_name) {
-                                        return -1;
-                                    } else {
-                                        return 1;
-                                    }
-                                }
-                                if (sortBy === 'Last Name') {
-                                    if (b.last_name > a.last_name) {
-                                        return -1;
-                                    } else {
-                                        return 1;
-                                    }
-                                }
-                            })
-                                : data}
+                            data={dataSortBy()}
                             keyExtractor={(item) => String(item.id)}
                             ItemSeparatorComponent={() => <View style={{ height: 0.5, backgroundColor: colors.grey }}></View>}
                             // renderItem={RenderItem}
@@ -122,7 +130,7 @@ const ContactComponent = ({ sortBy, modalVisible, setModalVisible, loading, data
                     </View>
                 )}
 
-                {/* <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} /> */}
+                <ReuseableButton title="Open Modal" danger onPress={() => setModalVisible(prev => !prev)} />
             </View>
             <TouchableOpacity style={styles.floatingActionButton} onPress={() => navigate(CREATE_CONTACT)}>
                 <Icon name="plus" size={21} color={colors.white} />

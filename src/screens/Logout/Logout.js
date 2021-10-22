@@ -1,14 +1,21 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect } from "react";
+import { ActivityIndicator, StyleSheet } from "react-native";
+import loginUser from "../../context/actions/auth/loginUser";
+import useGlobal  from "../../hooks";
 
 const Logout = () => {
-    return (
-        <View>
-            <Text>Logout</Text>
-        </View>
-    )
-}
+  const {
+    
+  } = useGlobal();
 
-export default Logout
+  useEffect(() => {
+    loginUser()(authDispatch)
+    return () => {};
+  }, []);
 
-const styles = StyleSheet.create({})
+  return <ActivityIndicator />;
+};
+
+export default Logout;
+
+const styles = StyleSheet.create({});

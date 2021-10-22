@@ -2,22 +2,19 @@ import React from 'react'
 import {  StyleSheet, Text, Touchable, TouchableOpacity, View } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import colors from '../../assets/theme/colors';
-import AsyncStorage from "@react-native-async-storage/async-storage"
 import { AppModal, Icon, ReuseableButton } from '../../components/common';
 
 const SettingsComponent = ({ settingsOptions, modalVisible, setModalVisible, prefArr }) => {
-    
-const saveSetting = (key, value) => {
-    AsyncStorage.setItem(key, value);
-};
+
 
     const modalBodyData = () => (
         <>
             {prefArr.map(({name, selected, onPress}) => (
                 <View key={name}>
                     <TouchableOpacity style={{flexDirection:'row', alignItems:'center', paddingVertical:5}} onPress={onPress}>
-                        {selected && <Icon name="checked" type="material" size={17} />}
-                        <Text style={styles.bodytitle}>{name}</Text>
+                        {selected && <Icon name="check" type="material" size={17} />}
+                        {/* <Text style={styles.bodytitle}>{name}</Text> */}
+                        <Text style={{fontSize:17, paddingLeft: selected ? 15 : 30}}>{name}</Text>
                     </TouchableOpacity>
                 </View>
             ))}
@@ -26,10 +23,10 @@ const saveSetting = (key, value) => {
 
     return (
         <>
-        <ReuseableButton title="Open Modal" secondary onPress={() => setModalVisible(true)} />
+        {/* <ReuseableButton title="Open Modal" secondary onPress={() => setModalVisible(true)} /> */}
         <AppModal {...{ modalVisible }} {...{ setModalVisible }}
             title="Sort By"
-            modalBody={modalBodyData}
+            modalBody={modalBodyData()}
             modalFooter={<></>}
             closeOnTouchOutside={false} />
         <ScrollView style={{backgroundColor: colors.white}} scrollEnabled={false}>
@@ -64,7 +61,8 @@ const styles = StyleSheet.create({
     line:{
         height: 0.5, backgroundColor: colors.grey
     },
-    bodytitle:{
-        fontSize:17, paddingLeft: 15
-    }
+    bodytitle: ({selected}) => ({
+        // fontSize:17, paddingLeft: 15
+        fontSize:17, paddingLeft: selected ? 15 : 30
+    })
 })

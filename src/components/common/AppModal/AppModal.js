@@ -20,7 +20,7 @@ export const AppModal = ({
                     <View style={styles.modalView}>
                         <ScrollView scrollEnabled={false}>
                             <View >
-                                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                                <View style={styles.modalHeader}>
                                     <Text style={{ flex: 1 }}>{title || 'RNContacts'}</Text>
                                     <View onPress={()=>setModalVisible(false)}>
                                         <Icon type="evil" name="close" size={27} onPress={() => setModalVisible(prev => !prev)} />
@@ -75,7 +75,6 @@ AppModal.defaultProps = {
 const styles = StyleSheet.create({
     modalWrapper: {
         backgroundColor: 'rgba(0,0,0,0.6)',
-        // flex: 1,
         justifyContent: 'center',
         height:'100%'
     },
@@ -85,9 +84,10 @@ const styles = StyleSheet.create({
         marginHorizontal: 20,
         borderRadius: 4
     },
-    modalHeaer: {
+    modalHeader: {
         flexDirection: 'row',
-        justifyContent: "space-around"
+        justifyContent: "space-around",
+        padding: 15
     },
     title: {
         fontSize: 21,

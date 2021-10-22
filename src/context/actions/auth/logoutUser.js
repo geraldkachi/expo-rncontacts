@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { LOGOUT_USER } from '../../actionTypes/actionTypes';
 
 
-const LoginUser = () => (dispatch) => {
+const LogoutUser = () => (dispatch) => {
     AsyncStorage.removeItem('token');
     AsyncStorage.removeItem('user');
     dispatch({
@@ -10,4 +10,4 @@ const LoginUser = () => (dispatch) => {
     });
 };
 
-export default LoginUser
+export default LogoutUser

@@ -3,10 +3,16 @@ import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import SettingsComponent from './SettingsComponent'
 
+
 const Settings = () => {
 
     const [email, setEmail] = useState(null)
+    const [sortBy, setSortBy] = useState(null)
     const [modalVisible, setModalVisible] = useState(false)
+
+    const saveSetting = (key, value) => {
+      AsyncStorage.setItem(key, value);
+  };
 
     const settingsOptions = [
         {title: 'My Info', subTitle: 'Setup your profile', onPress: () => {}},
@@ -24,14 +30,27 @@ const Settings = () => {
       ];
 
       const prefArr = [
-          {name: "First Name", selected: false, onPress: () => {},},
-          {name: "Last Name", selected: false, onPress: () => {}},
+          {name: "First Name", selected: sortBy === "First Last", onPress: () => { 
+            saveSetting('sortBy', 'First Name');
+            setModalVisible(false)
+            setSortBy("First Name")
+          }},
+          {name: "Last Name", selected: sortBy === "Last Last", onPress: () => { 
+            saveSetting('sortBy', 'Last Name');
+            setModalVisible(false)
+            setSortBy("Last Name")
+          }},
       ]
 
 
     const getSettings  = async () => {
         const user = await AsyncStorage.getItem("user")
         setEmail(JSON.parse(user).email)
+
+        const sortPref = await AsyncStorage.getItem('sortBy');
+        if (sortPref) {
+          setSortBy(sortPref);
+        }
     }
 
     useEffect(() => {

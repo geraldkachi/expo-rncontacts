@@ -6,6 +6,7 @@ import DrawerNavigator from "./DrawerNavigator"
 import AsyncStorage from "@react-native-async-storage/async-storage"
 // import SplashScreen from 'react-native-splash-screen';
 import useGlobal from "../hooks"
+import { navigatiobRef } from "./RootNavigation/RootNavigation"
 
 const AppNavContainer = () => {
     const { authState: { isLoggedIn } } = useGlobal()
@@ -40,7 +41,7 @@ const AppNavContainer = () => {
     return (
         <> 
             {authLoaded ?
-                <NavigationContainer>
+                <NavigationContainer ref={navigatiobRef}>
                     <StatusBar barStyle="dark-content" />
                     {isAuthenticated ? <DrawerNavigator /> : <AuthNavigator />}
                 </NavigationContainer>

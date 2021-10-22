@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/core'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/core'
 import { StyleSheet } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { Container, Icon } from '../../components/common'
@@ -7,6 +7,7 @@ import ContactComponent from './ContactComponent'
 import useGlobal from '../../hooks'
 import getContacts from '../../context/actions/contacts/getContacts'
 import contactsInitialStates from '../../context/initialStates/contactsInitialStates'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 
 const Contacts = () => {
@@ -26,6 +27,20 @@ const Contacts = () => {
         getContacts()(contactsDispatch)
         // return () => {}
     }, [])
+
+    const getSettings = async () => {
+        const sortPref = await AsyncStorage.getItem("sortBy")
+        if(sortPref) {
+            setSortBy(sortPref)
+        }
+    }
+
+    useFocusEffect(
+        useCallback(() => {
+            getSettings()
+            },
+            [],)
+    )
 
 
     useEffect(() => {
@@ -47,7 +62,7 @@ const Contacts = () => {
                 {...{ setModalVisible }}
                 {...{ data }}
                 {...{ loading }}
-                sortBy={sortBy}
+                {...{ sortBy }}
                  />
         // </Container>
     )
