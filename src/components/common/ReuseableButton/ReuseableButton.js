@@ -2,7 +2,7 @@ import React from 'react'
 import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import colors from '../../../assets/theme/colors'
 
-export const ReuseableButton = ({title, loading, disabled, primary, danger, secondary, onPress }) => {
+export const ReuseableButton = ({ title, loading, disabled, primary, danger, secondary, onPress }) => {
 
     const getBgColor = () => {
         if (disabled) {
