@@ -6,8 +6,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 
 export const Container = ({ children }) => {
     return (
-        <ScrollView>
-            <KeyboardAwareScrollView scrollEnabled={false}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+            <KeyboardAwareScrollView scrollEnabled={false} extraScrollHeight={100} enableOnAndroid={true} keyboardShouldPersistTaps='handled' scrollToOverflowEnabled={true} enableAutomaticScroll={true}>
                 <View style={styles.wrapper}>
                     {children}
                 </View>
