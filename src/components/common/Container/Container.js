@@ -17,9 +17,7 @@ export const Container = ({ children }) => {
 }
 
 const styles = StyleSheet.create({
-    wrapper:{
-        padding: 20
-    }
+    wrapper:{ padding: 20 }
  })
 
 // export default Container
